@@ -33,6 +33,8 @@ const cards = [
     }
 ];
 
+// Первый способ
+
 const body = document.querySelector('body');
 document.body.style.backgroundColor = 'darkgrey';
 
@@ -76,30 +78,33 @@ function addListContent() {
 
 addListContent();
 
+// Второй способ
 
+const div = document.createElement('div');
+document.body.append(div);
+div.classList.add('app');
 
-// const div = document.createElement('div');
-// document.body.append(div);
-// div.classList.add('app');
+function flowersList(elem) { 
+    const ul = document.createElement('ul');
+    ul.classList.add('list');
+    div.append(ul);
 
-// function flowersList(elem) { 
-//     const ul = document.createElement('ul');
-//     ul.classList.add('list');
-//     div.append(ul);
+    elem.forEach(elem => {
+        const li = document.createElement('li');
+        li.classList.add('list__item');
+        li.classList.add('list__item');
+        li.style.marginBottom = '30px';
+        li.style.listStyle = 'none';
 
-//     elem.forEach(elem => {
-//         const li = document.createElement('li');
-//         li.classList.add('list__item');
+        li.innerHTML = `<img src="${elem.url}" style = "width: 350px; height: 250px; object-fit: cover; border: 5px solid mediumturquoise; box-shadow: 3px 3px 3px 2px rgba(0, 0, 0, 0.3);">
+                                <h2 style = "color: mediumturquoise; margin: 0; font-size: 40px; text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);">${elem.title} </h2>`;
+        ul.append(li);
+    });
 
-//         li.innerText = ` ${elem.url}
-//                                 ${elem.title}`;
-//         ul.append(li);
-//     });
+    return ul;
+}
 
-//     return ul;
-// }
-
-// flowersList(cards);
+flowersList(cards);
 
 
 
